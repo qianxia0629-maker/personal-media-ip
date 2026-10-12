@@ -50,6 +50,7 @@ def apply(config=None):
  for path in c['dirs'].values():resolve(path).mkdir(parents=True,exist_ok=True)
  wpath=ROOT/c['writing']['workflowFile'];w=load(wpath)
  w['videoScript']['style']=c['writing']['videoStyle'];w['wechatArticle']['style']=c['writing']['wechatStyle']
+ w['reviewSequence']=list(c['writing']['reviewSkills'])+['事实与口播/文章复核']
  save(wpath,w)
  print('CONFIG_APPLIED: profile, fonts, brand, voice, music, and writing styles synchronized')
  return c
