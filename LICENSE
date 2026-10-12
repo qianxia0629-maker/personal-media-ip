@@ -1,21 +1,15 @@
-MIT License
+个人自媒体IP打造 — 原创部分使用许可
 
-Copyright (c) 2026 qianxia0629-maker
+Copyright (c) 2026 Ray / qianxia0629-maker
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+本项目仅供学习交流。未经本人许可，禁止转载或商用。
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+允许个人下载、研究及为学习目的在本机运行本项目原创部分。
+对原创配置、提示词适配、工作流编排、文档和新增代码的转载、再分发或商业使用，须事先取得Ray许可。
+联系方式：hanshinei7@gmail.com；微信 mokusei275。
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+第三方组件及字体不适用本原创部分限制，继续按各自原许可证使用。
+详情见THIRD_PARTY.md及licenses/目录，禁止移除第三方版权声明或把其许可证替换成本文件。
+此前已发布版本的许可以相应版本文件为准，本许可不追溯撤销此前版本已经授予的许可。
+
+本项目按现状提供，不作功能、审核结果或特定用途保证。
