@@ -1,0 +1,14 @@
+{
+  "name": "investigation-visual-template",
+  "private": true,
+  "scripts": {
+    "still": "remotion still index.jsx InvestigationVisual",
+    "render": "remotion render index.jsx InvestigationVisual preview.mp4 --codec=h264 --crf=17 --concurrency=3"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.508",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "remotion": "4.0.508"
+  }
+}

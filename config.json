@@ -1,0 +1,122 @@
+{
+  "dirs": {
+    "projects": "workspace/whiteboard/episodes",
+    "build": "workspace/whiteboard/build",
+    "investigation": "workspace/investigation"
+  },
+  "tts": {
+    "engine": "external",
+    "voice": "",
+    "voiceName": "我的克隆音色",
+    "customVoiceId": "",
+    "resourceId": "",
+    "speed": 1.2,
+    "externalManifest": "",
+    "note": "外部音色由自己的服务生成，导入真实音频及时间戳；volc可切换为原生火山。"
+  },
+  "bgm": {
+    "file": "assets/bgm.mp3",
+    "trim": [],
+    "gain": 0.5,
+    "speak": 0.1,
+    "gap": 0.22,
+    "rampSeconds": 0.35,
+    "tailFadeSeconds": 3.5,
+    "_note": "配乐不随公开仓库分发，放入自己拥有使用权的文件；没有则无配乐。",
+    "enabled": true
+  },
+  "render": {
+    "fps": 30,
+    "leadSeconds": 0.3,
+    "holdSeconds": 0.7,
+    "workers": 4,
+    "_note": "workers=并行出帧的页面数（每页一个 Chromium 渲染进程，交错截图，成片逐帧一致）；1=老的单页串行",
+    "pen": {
+      "speed": 1000,
+      "fillSpeed": 9000,
+      "minSeconds": 0.35,
+      "gapSeconds": 0.12,
+      "charSeconds": [
+        0.06,
+        0.2
+      ],
+      "overflow": 0.35,
+      "travelMax": 1.6,
+      "_note": "speed=描边像素/秒；fillSpeed=斜线填充像素/秒；minSeconds=每个元素最短绘制时长；gapSeconds=两笔之间抬笔间隙；charSeconds=[最小,最大] 每个汉字的书写秒数（按字号/700 取，拉丁字母减半）；overflow=一个 beat 画不完时最多溢出到下一段的比例；travelMax=抬笔移动最长秒数，超过就中途藏笔；fillMaxSeconds=单个图形填充（斜线/实底）最长秒数",
+      "fillMaxSeconds": 1.2
+    }
+  },
+  "captions": {
+    "enabled": true,
+    "fontSize": 46,
+    "baselineY": 1022,
+    "safeTop": 960,
+    "minChars": 6,
+    "maxChars": 20,
+    "leadSeconds": 0.08,
+    "tailSeconds": 0.25,
+    "_note": "烧录字幕：小赖字体、墨色 + 纸色描边，居中于底部；safeTop 以下 110px 留给字幕，场景元素别越界（wb scenes 会警告）。SRT 另存期目录 字幕.srt"
+  },
+  "brand": {
+    "name": "RayTalk",
+    "slogan": "",
+    "accent": "#A5B0E3",
+    "ink": "#1e1e1e",
+    "logo": "",
+    "watermark": {
+      "enabled": true,
+      "position": "top-right",
+      "opacity": 0.72,
+      "size": 36,
+      "margin": 56,
+      "drawInSeconds": 1.2,
+      "sparkle": true,
+      "underline": true
+    },
+    "endCard": {
+      "enabled": true,
+      "seconds": 5.5,
+      "cta": "",
+      "holdSeconds": 1.5
+    },
+    "pen": {
+      "color": "#f5b942"
+    },
+    "_note": "RayTalk 为可修改的演示品牌；#A5B0E3 是屏幕近似色。",
+    "font": {
+      "family": "Xiaolai",
+      "file": "skills/whiteboard-video/assets/fonts/Xiaolai-Regular.ttf"
+    },
+    "bodyFont": {
+      "family": "Xiaolai",
+      "file": "skills/whiteboard-video/assets/fonts/Xiaolai-Regular.ttf"
+    },
+    "graphic": {
+      "type": "sparkle",
+      "sparkle": true,
+      "underline": true
+    }
+  },
+  "cover": {
+    "ratios": [
+      "4:3",
+      "3:4"
+    ],
+    "seriesTag": "白板 3 分钟讲清楚",
+    "frame": true,
+    "frameColor": "#1e1e1e",
+    "_note": "封面：ratios 出几种画幅（4:3=1440×1080 公众号/横版，3:4=1080×1440 视频号竖版/小红书；也支持 16:9=1920×1080）；seriesTag=左上角系列标签默认文案（scenes.js 里 tag 可覆盖）；frame=四周手绘粗边框。封面内容在 scenes.js 的 cover 函数里写，wb cover 出 <期>/封面-4x3.png、封面-3x4.png"
+  },
+  "writing": {
+    "videoStyle": "自然中文口播；具体、直接、少套话",
+    "wechatStyle": "辛辣锐评",
+    "workflowFile": "workflow/文案编写配置.json",
+    "scopeNotes": "screen-only",
+    "reviewSkills": [
+      "humanizer-zh",
+      "stop-slop",
+      "taste-skill"
+    ],
+    "optionalTitleAudit": "dbs-xhs-title（另装；注意其CC BY-NC 4.0许可）"
+  }
+}

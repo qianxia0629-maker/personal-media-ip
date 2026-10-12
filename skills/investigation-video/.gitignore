@@ -1,0 +1,9 @@
+.env
+node_modules/
+projects/
+knowledge/
+*.log
+.DS_Store
+template/remotion/out/
+template/remotion/preview.mp4
+assets/bgm.mp3

@@ -1,0 +1,109 @@
+{
+  "scope": "本仓库白板讲解与时事调查工作流",
+  "source": "由用户提供的写作配置筛选而成的原创项目适配规则",
+  "promptFile": "文案编写提示词.md",
+  "reviewFile": "文案审校流程.md",
+  "draftingStage": "三轮审校之前",
+  "videoScript": {
+    "style": "自然中文口播；具体、直接、少套话",
+    "lengthRule": "按当次视频时长与实际音色语速编写",
+    "shortScriptReferenceChars": [
+      200,
+      500
+    ],
+    "separateScreenNotes": true
+  },
+  "platforms": [
+    {
+      "name": "抖音",
+      "type": "video_publish_copy",
+      "titleMaxChars": 30,
+      "titleStrategy": "具体事件/动作或痛点前置；真实数字配核心关键词，情绪随证据",
+      "format": "直接说看点，短段落，相关话题自然附于发布文案"
+    },
+    {
+      "name": "哔哩哔哩",
+      "type": "video_publish_copy",
+      "titleMaxChars": 40,
+      "titleStrategy": "对象和核心问题清楚；有依据的数字或反差；标题承诺具体内容",
+      "format": "交代事件、机制、证据与看点；长片可按成片实际时间补章节"
+    },
+    {
+      "name": "小红书",
+      "type": "video_publish_copy",
+      "bodyCharsReference": [
+        300,
+        800
+      ],
+      "titleMaxChars": 20,
+      "titleContainsBrand": false,
+      "titleStrategy": "场景/问题切入；真实数字、明确关键词与自然情绪；不写品牌名",
+      "format": "短段落、可用信息和相关标签；emoji不强制"
+    },
+    {
+      "name": "微信视频号",
+      "type": "video_publish_copy",
+      "titleMaxChars": 16,
+      "titleStrategy": "具体事实与观众关系前置；有依据的关键词、数字或反差",
+      "format": "简洁、口语、清楚导语与正文，适量相关话题"
+    }
+  ],
+  "cta": "按主题需要自然安排；不强制固定点赞关注口号",
+  "missingInput": "使用项目已确认配置与上下文；只问影响事实或范围的必要信息",
+  "reviewSequence": [
+    "humanizer-zh",
+    "stop-slop",
+    "taste-skill",
+    "事实与口播/文章复核"
+  ],
+  "delivery": "成片、字幕、4:3/3:4双封面、四平台标题与发布文案、微信公众号标题与完整锐评文章、事实来源与检查记录",
+  "implementation": "供 Agent 读取执行的提示词与配置，不是独立运行程序或外部专家服务",
+  "titleGeneration": {
+    "source": "用户所供内容专家配置中的钩子与标题策略",
+    "strategy": [
+      "按平台定制开头钩子",
+      "结合有来源的数字、核心关键词、与内容相符的情绪切入",
+      "以正文能够兑现的信息设计标题"
+    ],
+    "audit": "dbs-xhs-title为可选外部审核（原项目CC BY-NC 4.0）；未安装或无使用许可时使用本仓库原生标题策略，不阻断。",
+    "candidatesPerPlatform": "主推1个、备选1个；当次要求优先"
+  },
+  "wechatArticle": {
+    "name": "微信公众号",
+    "type": "article_only",
+    "style": "辛辣锐评",
+    "bodyCharsReference": [
+      1500,
+      3000
+    ],
+    "titleMaxChars": 30,
+    "outputFields": [
+      "标题",
+      "文章"
+    ],
+    "deliverables": [
+      "微信公众号文章.md",
+      "微信公众号文章.txt"
+    ],
+    "abstractOutput": false,
+    "tagsOutput": false,
+    "commentsOutput": false,
+    "ctaRequired": false,
+    "approach": "观点鲜明、下判断有依据；用具体事实揭开利益、责任和代价，讽刺针对行为和话术；不编造动机或私人经历",
+    "format": "Markdown",
+    "formatReference": "workflow/微信公众号文章模板.md",
+    "templateFile": "微信公众号文章模板.md",
+    "txtPreservesMarkdown": true,
+    "formatRules": [
+      "# 主标题",
+      "短段落引入",
+      "## 分节小标题；必要时 ### 子节",
+      "**重点事实或判断加粗**",
+      "> 引语（仅有真实原文时）",
+      "--- 分隔线按需使用",
+      "建议清单按需使用列表",
+      "有依据的锐评结尾"
+    ]
+  },
+  "publishAction": "仅制作与备稿，不自动公开发布"
+}
