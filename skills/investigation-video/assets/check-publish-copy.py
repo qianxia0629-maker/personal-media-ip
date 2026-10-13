@@ -5,6 +5,7 @@
 每个平台含 主推标题/备选标题/正文/（共用免责段）；标题字数硬限制（含标点）：小红书≤20，抖音/快手/视频号/公众号≤30，B站/YouTube/知乎≤40；顶部须有"标题公式（dbs-xhs-title）："行；B站与 YouTube 含"章节："；B站含"本期结构："；抖音/快手/B站/视频号/小红书含"置顶评论："；公众号含"摘要："。
 """
 import sys,re
+from title_symbols import VIDEO_CHANNEL_SYMBOLS, VIDEO_CHANNEL_SEQUENCES, invalid_title_characters
 raytalk = '--raytalk' in sys.argv
 args = [a for a in sys.argv[1:] if a != '--raytalk']
 if not args or args[0] in ('-h','--help'):print('用法: python3 check-publish-copy.py [--raytalk] <发布文案.md>（--raytalk 检查当前四平台）');sys.exit(2)
@@ -27,6 +28,9 @@ if raytalk:
                 if '<' in title or '>' in title: bad.append(f'{name}{field}仍为模板')
                 if name in limits and len(title)>limits[name]: bad.append(f'{name}{field}超过{limits[name]}字')
                 if name=='小红书' and 'raytalk' in title.lower(): bad.append('小红书标题不写品牌名')
+                if name=='微信视频号':
+                    invalid=invalid_title_characters(title,VIDEO_CHANNEL_SYMBOLS,VIDEO_CHANNEL_SEQUENCES)
+                    if invalid: bad.append(f'{name}{field}含不支持的特殊字符{invalid!r}；逗号请改为空格')
         m=re.search(r'^正文：(.*)',body,re.M|re.S)
         if not m or not m.group(1).strip(): bad.append(f'{name}缺正文')
         elif re.search(r'<[^>]+>',m.group(1)): bad.append(f'{name}正文含未填写模板')

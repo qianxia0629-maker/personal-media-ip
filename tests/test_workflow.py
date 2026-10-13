@@ -5,6 +5,7 @@ sys.path.insert(0,str(ROOT/'scripts'))
 from import_narration import align
 from check_publish import check
 from apply_config import load
+from title_symbols import VIDEO_CHANNEL_SYMBOLS
 
 class WorkflowTests(unittest.TestCase):
  def test_real_word_bounds_and_segment_alignment(self):
@@ -39,5 +40,39 @@ class WorkflowTests(unittest.TestCase):
   platforms=load(ROOT/'workflow/文案编写配置.json')['platforms']
   platforms[-1]['titleMaxChars']=4
   self.assertTrue(any('longer' in e for e in check(self.text('这是五个字'),platforms)))
+ def test_allowed_video_channel_symbols(self):
+  platforms=load(ROOT/'workflow/文案编写配置.json')['platforms']
+  for symbol in VIDEO_CHANNEL_SYMBOLS:
+   with self.subTest(symbol=symbol):self.assertEqual(check(self.text('资料'+symbol+'核对'),platforms),[])
+  for title in ['温度25℃','温度25°C','AI资料 核对50%','《资料》：有误吗？']:
+   with self.subTest(title=title):self.assertEqual(check(self.text(title),platforms),[])
+ def test_unsupported_video_channel_symbols_rejected(self):
+  platforms=load(ROOT/'workflow/文案编写配置.json')['platforms']
+  for symbol in ['，',',','。','.','！','!','、','；',';','（','）','(',')','#','@','/','_','-','—','…','★','🔥','°','①','\u200b','\t','\u00a0','\ufe0f','\u20e3']:
+   with self.subTest(symbol=symbol):self.assertTrue(any('unsupported' in e for e in check(self.text('资料'+symbol+'核对'),platforms)))
+ def test_backup_title_uses_same_symbol_rule(self):
+  platforms=load(ROOT/'workflow/文案编写配置.json')['platforms']
+  text=self.text('核对资料').replace('## 微信视频号\n主推标题：核对资料\n备选标题：先看来源','## 微信视频号\n主推标题：核对资料\n备选标题：先看来源！')
+  self.assertTrue(any('备选标题' in e and 'unsupported' in e for e in check(text,platforms)))
+ def test_symbol_rule_does_not_restrict_other_platforms_or_body(self):
+  platforms=load(ROOT/'workflow/文案编写配置.json')['platforms']
+  text=self.text('核对资料').replace('主推标题：先核对资料','主推标题：先核对资料！')
+  self.assertEqual(check(text,platforms),[])
+ def test_spaces_count_toward_sixteen_character_limit(self):
+  platforms=load(ROOT/'workflow/文案编写配置.json')['platforms']
+  self.assertEqual(check(self.text('字'*7+' '+'字'*8),platforms),[])
+  self.assertTrue(any('longer' in e for e in check(self.text('字'*8+' '+'字'*8),platforms)))
+ def test_symbol_allowlist_is_configurable(self):
+  platforms=load(ROOT/'workflow/文案编写配置.json')['platforms']
+  platforms[-1]['titleAllowedSymbols']+='!'
+  self.assertEqual(check(self.text('核对资料!'),platforms),[])
+ def test_standalone_skill_checker_enforces_symbols(self):
+  with tempfile.TemporaryDirectory(dir=ROOT/'.local') as folder:
+   path=Path(folder)/'copy.md'
+   header='对应：测试\n标题策略：关键词\n'
+   for title,expected in [('资料 核对?',0),('资料，核对',1)]:
+    path.write_text(header+self.text(title),encoding='utf-8')
+    result=subprocess.run([sys.executable,str(ROOT/'skills/investigation-video/assets/check-publish-copy.py'),'--raytalk',str(path)],capture_output=True,text=True,encoding='utf-8')
+    self.assertEqual(result.returncode,expected,result.stdout+result.stderr)
 
 if __name__=='__main__':unittest.main()

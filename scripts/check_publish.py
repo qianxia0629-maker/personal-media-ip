@@ -2,6 +2,7 @@
 import argparse,re,json
 from pathlib import Path
 from apply_config import ROOT,load
+from title_symbols import invalid_title_characters
 def check(text,platforms,brand_name="RayTalk"):
  errors=[];names=[p['name'] for p in platforms]
  heads=re.findall(r'^## (.+)$',text,re.M)
@@ -16,6 +17,9 @@ def check(text,platforms,brand_name="RayTalk"):
    title=m[1].strip()
    if '<' in title or '>' in title or '〔' in title:errors.append(name+' unfilled title')
    if len(title)>cfg['titleMaxChars']:errors.append(name+' title longer than '+str(cfg['titleMaxChars']))
+   if 'titleAllowedSymbols' in cfg:
+    invalid=invalid_title_characters(title,cfg['titleAllowedSymbols'],cfg.get('titleAllowedSymbolSequences',[]))
+    if invalid:errors.append(name+' '+field+' unsupported title characters: '+repr(''.join(invalid))+'（逗号请改为空格）')
    if cfg.get('titleContainsBrand') is False and brand_name and brand_name.lower() in title.lower():errors.append(name+' title contains demo brand')
   m=re.search(r'^正文：(.*)',body,re.M|re.S)
   if not m or not m[1].strip():errors.append(name+' missing body')

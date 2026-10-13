@@ -87,6 +87,7 @@ Playwright的安装会下载Chromium；也可设置`WB_CHROMIUM_EXECUTABLE`指�
 | 平台集合与顺序 | 抖音/B站/小红书/视频号 | `workflow/文案编写配置.json → platforms` | 同时改四平台模板；`scripts/check_publish.py`动态读取配置，不把四平台写死 |
 | 标题策略 | 数字/关键词/情绪点与平台钩子 | `workflow/文案编写提示词.md`与配置`titleGeneration` | 数字有来源，标题兑现；每平台主推1个、备选1个 |
 | 标题长度 | 抖音30、B站40、小红书20、视频号16 | 各平台`titleMaxChars` | 含标点，校验自动按配置；小红书`titleContainsBrand=false` |
+| 视频号标题符号 | 仅书名号、引号、冒号、加号、问号、百分号、摄氏度；逗号改为空格 | 微信视频号条目的`titleAllowedSymbols`、`titleAllowedSymbolSequences`、`titleSymbolRule` | 主推/备选均检查，空格也计入16字；不允许emoji及其他特殊字符；不限制发布正文 |
 | 小红书篇幅/格式 | 300–800字参考 | 对应平台`bodyCharsReference/format` | 不强制emoji，相关标签自然安排 |
 | 三轮审校 | Humanizer/stop-slop/taste | `writing.reviewSkills` + `workflow/文案审校流程.md` | 若替换/关闭，需同时更新Agent入口与执行顺序，不能只改数组 |
 | 只上屏的范围说明 | 开启 | `writing.scopeNotes` + 写作/审校提示词 | 这是Agent规则，不能只改JSON就以为口播自动过滤 |

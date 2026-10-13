@@ -45,7 +45,12 @@
       "type": "video_publish_copy",
       "titleMaxChars": 16,
       "titleStrategy": "具体事实与观众关系前置；有依据的关键词、数字或反差",
-      "format": "简洁、口语、清楚导语与正文，适量相关话题"
+      "format": "简洁、口语、清楚导语与正文，适量相关话题",
+      "titleAllowedSymbols": "《》〈〉“”‘’\"'「」『』：:+＋?？%％℃",
+      "titleAllowedSymbolSequences": [
+        "°C"
+      ],
+      "titleSymbolRule": "主推及备选标题均≤16字（含标点和空格）；不含其他特殊字符，符号仅支持书名号、引号、冒号、加号、问号、百分号、摄氏度；逗号改为空格，不使用emoji。"
     }
   ],
   "cta": "按主题需要自然安排；不强制固定点赞关注口号",
